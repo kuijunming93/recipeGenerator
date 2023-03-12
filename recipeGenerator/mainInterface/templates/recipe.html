@@ -1,0 +1,208 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block base %}
+
+{% if limitReached %}
+<script>
+    $(document).ready(function(){
+        $("#sessionLimitModal").modal('show');
+    });
+</script>
+{% endif %}
+
+{% if apiError and not limitReached %}
+<script>
+    $(document).ready(function(){
+        $("#apiExceptionModal").modal('show');
+    });
+</script>
+{% endif %}
+
+<div class="fixed-top"> <!--NAVBAR-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'baseView'%}">
+            <img src="{% static './assets/logo.png' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            Recipe365
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" aria-current="page" href="{% url 'baseView'%}">Home</a>
+            <a class="nav-link active" href="{% url 'mainInterface:generateView'%}">Generate</a>
+            <a class="nav-link" href="{% url 'mainInterface:recipeView'%}">Repository</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+</div> <!--END NAVBAR-->
+
+<!-- Notification Modal, USER SESSION LIMIT -->
+<div class="modal fade" id="sessionLimitModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="sessionLimitModalLabel" style="color:black;">User Exceeded Session Limit</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        You have reached your maximum allowable request call to our backend services, as such your view will be rendered with data stored in our repository section.
+        <br><br>Please try again later if you wish to generate a new recipe.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Notification Modal, API STATE MODAL -->
+<div class="modal fade" id="apiExceptionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="apiExceptionModalLabel" style="color:black;">Bad Request Exception</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h4 style="color:black;">Why is that?</h4>
+          {% if recentlyGenerated %}
+            Based on your session history, you have generated the following recipes:
+            <ul>
+              {% for recipe in recentlyGenerated %}
+              <li>{{recipe}}</li>
+              {% endfor %}
+            </ul>
+            The algorithm is designed to generate a new recipe everytime, hence the selected mode of generation is limited by the recipes that was previously generated.<br>
+            In other words, the selected mode of generation is not suitable for this session due to the limited amount of recipes that is fitting the requirement.
+            <br><br>To continue, please try other modes of generation algorithm in the 'Generate' section if you wish to generate a new recipe.
+            <br><br>For a seamless experience, you are currently rendered with a view of data from our repository.
+          {% else %}
+            There seems to be an issue with calling the backend services.<br>
+            It could be due to the following:
+            <ul>
+              <li>Services timed out due to high traffic</li>
+              <li>Backend services are temporarily down</li>
+              <li>Response from backend services might have exceeded maximum token count for data preprocessing</li>
+            </ul>
+            Please feel free to retry your operation after a few seconds.
+            <br><br>For a seamless experience, you are currently rendered with a view of data from our repository.
+          {% endif %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="blur-window">
+    <div class="container p-4 mt-5">
+        <div class="container mt-2 mb-3">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'baseView'%}" style="color:white; text-decoration: none;">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'mainInterface:generateView'%}" style="color:white; text-decoration: none;">Generate</a></li>
+                <li class="breadcrumb-item active" aria-current="page" style="color:white; text-decoration: none;"><strong>{{generativeInfo.description}}</strong></li>
+              </ol>
+            </nav>
+        </div>
+
+        <!--MAIN CONTENT-->
+        <div class="row card mt-2">
+          <div class="card-body">
+            <div class="typewriter" style="text-align:center" class="mb-2">
+                <h3 class="card-title" style="margin-bottom: 10px;">{{payload.name}}</h3>
+                <img src="{{imgLink}}" class="card-img-top load-reveal" alt="..." style="max-width: 512px;">
+            </div>
+            <h5 class="fadeIn-fast" style="color:black;">Description</h5>
+            <div class="typewriter">
+                <p class="card-text mt-2 ">{{payload.description}}</p>
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+            <div class="card col-4 d-none d-lg-block">
+              <div class="card-body">
+                  <h5 class="fadeIn-fast" style="color:black;">Ingredients</h5>
+                  <div class="fadeIn">
+                      <ul>
+                      {% for item in payload.ingredients %}
+                          <li>{{item}}</li>
+                      {% endfor %}
+                      </ul>
+                  </div>
+              </div>
+            </div>
+            <div class="card col-8 d-none d-lg-block">
+              <div class="card-body">
+                  <h5 class="fadeIn-fast" style="color:black;">Steps of preparation</h5>
+                  <div class="fadeIn">
+                      <ol>
+                      {% for item in payload.steps %}
+                          <li>{{item}}</li>
+                      {% endfor %}
+                      </ol>
+                  </div>
+              </div>
+            </div>
+
+            <div class="card d-lg-none">
+              <div class="card-body">
+                  <h5 class="fadeIn-fast" style="color:black;">Ingredients</h5>
+                  <div class="fadeIn">
+                      <ul>
+                      {% for item in payload.ingredients %}
+                          <li>{{item}}</li>
+                      {% endfor %}
+                      </ul>
+                  </div>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card d-lg-none">
+              <div class="card-body">
+                  <h5 class="fadeIn-fast" style="color:black;">Steps of preparation</h5>
+                  <div class="fadeIn">
+                      <ol>
+                      {% for item in payload.steps %}
+                          <li>{{item}}</li>
+                      {% endfor %}
+                      </ol>
+                  </div>
+              </div>
+            </div>
+        </div>
+        <!--END MAIN CONTENT-->
+
+        <div class="d-flex justify-content-evenly mt-2 mb-2" style="text-align:center;">
+            <a href="{% url 'mainInterface:generateView'%}" type="button" class="button btn btn-warning btn-lg" style="width: 45%;">Back</a>
+            <a href="{% url 'mainInterface:generateRecipe' pageIndex %}" type="button" class="btn btn-success btn-lg insertLoader-btn" style="width: 45%;">Generate more</a>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function displayLoader(){
+        el = document.querySelector(".insertLoader");
+        if (el.innerHTML.length <= 0){
+            el.innerHTML = `
+                <div class="loader" style="background-color:#FFE5B4">
+                  <div>
+                    <h3 class="loader-text mt-3" style="color:black">Generating your recipe, please wait..
+                    <div class="spinner-grow text-warning" role="status"></div></h3>
+                  </div>
+                </div>`;
+        }
+      }
+    window.onbeforeunload = displayLoader;
+</script>
+
+{% endblock %}

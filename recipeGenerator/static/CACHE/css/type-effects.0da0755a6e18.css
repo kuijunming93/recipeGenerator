@@ -1,0 +1,39 @@
+/* line 3, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/type-effects.scss */
+.typewriter h1, .typewriter h2, .typewriter h3, .typewriter h4, .typewriter h5 {
+  overflow: hidden;
+  /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange;
+  /* The typwriter cursor */
+  margin: 0 auto;
+  /* Gives that scrolling effect as the typing happens */
+  animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite; }
+
+/* line 12, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/type-effects.scss */
+.typewriter span, .typewriter p {
+  overflow: hidden;
+  /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange;
+  /* The typwriter cursor */
+  margin: 0 auto;
+  /* Gives that scrolling effect as the typing happens */
+  animation: typing 10s steps(40, end), blink-caret 0.75s step-end infinite; }
+
+/* line 21, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/type-effects.scss */
+.typewriter ul li, .typewriter ol li {
+  overflow: hidden;
+  /* Ensures the content is not revealed until the animation */
+  margin: 0 auto;
+  /* Gives that scrolling effect as the typing happens */
+  animation: typing 5s steps(40, end); }
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0; }
+  to {
+    width: 100%; } }
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent; } }

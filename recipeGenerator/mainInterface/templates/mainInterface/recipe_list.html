@@ -1,0 +1,91 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block base %}
+<div class="fixed-top"> <!--NAVBAR-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'baseView'%}">
+            <img src="{% static './assets/logo.png' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            Recipe365
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" aria-current="page" href="{% url 'baseView'%}">Home</a>
+            <a class="nav-link" href="{% url 'mainInterface:generateView'%}">Generate</a>
+            <a class="nav-link active" href="{% url 'mainInterface:recipeView'%}">Repository</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+</div> <!--END NAVBAR-->
+
+<div class="blur-window">
+    <div class="container p-4 mt-5">
+        <div class="container mt-2" style="text-align:center;"><h2>Recipes by Generative AI</h2></div>
+        <div class="container mt-3">
+            <div class="row d-flex justify-content-center infinite-container">
+                {% for item in recipe_list %}
+                    <div class="col col-sm-auto mt-3 infinite-item">
+                        <a href="/app/repository/{{item.pk}}" class="set-default-dark">
+                        <div class="card" style="width: 20rem; height: auto; ">
+                            <figure style="margin: 0;">
+                                <img src="{% static './assets/img-load.gif' %}" data-src="{{item.imgPath}}" class="card-img-top image-zoom image-loading load-blur" alt="..." style="max-width: 256px;">
+                            </figure>
+                            <div class="card-body">
+                            <h5 class="card-title">{{item.name}}</h5>
+                            <p class="card-text" style="font-weight: lighter; font-style: italic;">Click to view</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="d-flex justify-content-center mt-3 p-2">
+              <div class="spinner-border text-light loading" role="status" style="width: 3rem; height: 3rem;"></div>
+            </div>
+
+            <div class="row d-none">
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="infinite-more-link">next</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static './libs/image-loader.js' %}"></script>
+<script src="{% static './libs/jquery.waypoints.min.js' %}"></script>
+<script src="{% static './libs/infinite.min.js' %}"></script>
+<script>
+    function updateImgLoader(){
+        let images = document.querySelectorAll('img.image-loading');
+        images.forEach(image => {
+            image.classList.remove('load-blur');
+            const newUrl = image.getAttribute('data-src');
+            image.src = newUrl;
+            image.classList.remove('image-loading');
+            image.classList.add('load-blur');
+        })
+    }
+    updateImgLoader();
+
+    $('.loading').hide();
+    let infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0],
+        offset: 'bottom-in-view',
+        onBeforePageLoad: function(){
+            $('.loading').show();
+        },
+        onAfterPageLoad: function(){
+            setTimeout(function(){
+                $(".loading").fadeOut("slow");
+            }, 500);
+            updateImgLoader();
+        }
+    });
+</script>
+{% endblock %}

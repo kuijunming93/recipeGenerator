@@ -1,0 +1,161 @@
+body{
+    font-family: 'Edu SA Beginner', cursive;
+    /*font-family: 'Lato', sans-serif;*/
+
+}
+
+h1, h2, h3, h4, h5{
+    color: white;
+}
+
+img.load-blur{
+  animation: unblur 2s;
+}
+
+img.load-reveal{
+    animation: unblur 3.5s, reveal 3.5s;
+}
+
+@keyframes unblur {
+  from {
+  -webkit-filter: blur(10px);
+  filter: blur(10px);
+   }
+  to {
+  -webkit-filter: blur(0px);
+  filter: blur(0px);
+  }
+}
+
+@keyframes reveal {
+from {
+  filter: grayscale(100%);
+   }
+  to {
+  filter: grayscale(0%);
+  }
+}
+
+div.blur-window{
+    background-color: rgba(50,50,50, 0.3);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+}
+
+.loader{
+    position: fixed;
+    top:0; left: 0;
+    z-index: 3;
+    background: white;
+    align-items: center;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    height:100%;
+    width:100%;
+}
+
+a.set-default-dark{
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.swiper{
+}
+@-webkit-keyframes bg-animation {
+    0% {background-position: right;}
+    100% {background-position: left;}
+}
+
+body.bg-style {
+    -webkit-animation: bg-animation 30s infinite alternate;
+    background-image: url('../assets/wallpaper.jpg');
+}
+
+.item-box {
+  color: white;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align:center;
+  background-color: black; opacity: 0.8;
+  width: 100%;
+}
+
+.main-box{
+    border-radius: .5rem;
+    position: relative;
+    overflow: hidden;
+}
+.main-box figure img{
+    overflow: hidden;
+    object-fit: cover;
+}
+.main-box .main-box-content{
+    position: absolute;
+    top: 60%; left: 100%;
+    height: 100%;
+    width: 100%;
+    background:rgba(0,0,0,.6);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding-top:3rem;
+    text-align: center;
+    align-items: center;
+}
+
+.main-box .main-box-content{
+    color:white;
+}
+
+.main-box .main-box-content p{
+    color:rgba(190,190,190);
+}
+
+.main-box:hover .main-box-content{
+    left:0;
+}
+
+*{
+    transition: all 0.3s linear;
+}
+
+figure{
+    overflow: hidden;
+}
+
+img.image-zoom{
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    transform: scale(1);
+    transition: 0.5s ease-in-out;
+}
+
+img.image-zoom:hover{
+    border-radius: 6px;
+    transform: scale(1.2);
+}
+
+.swiper {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none;
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
