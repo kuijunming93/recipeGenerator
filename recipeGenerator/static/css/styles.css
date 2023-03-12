@@ -139,43 +139,6 @@ img.image-zoom:hover{
     transform: scale(1.2);
 }
 
-.swiper {
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none;
-    width: 100%;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    animation: fadeInSlide 1.5s;
-    animation-duration: 1.5s;
-    animation-timing-function: cubic-bezier(1, 0.055, 0.32, 1);
-}
-
-div.swiper-slide {
-  background-position: center;
-  background-size: cover;
-  width: 800px;
-  height: 1200px;
-  -webkit-filter: blur(5px);
-  filter: blur(5px);
-
-
-}
-
-div.swiper-slide img {
-  display: block;
-  width: 100%;
-}
-
-div.swiper-slide-active{
-    animation-name: brighten;
-    animation-duration: 1.5s;
-    animation-fill-mode: forwards;
-
-  -webkit-filter: blur(0px);
-  filter: blur(0px);
-}
-
 .entryFromLeft{
     animation-name: entryFromLeft;
     animation-duration: 1.5s;
@@ -192,15 +155,6 @@ div.swiper-slide-active{
     animation-name: exitToBottom;
     animation-duration: 1.5s;
     animation-fill-mode: forwards;
-}
-
-@keyframes fadeInSlide {
-  0% {
-    transform: translateY(60%);
-  }
-  100% {
-    transform: translateY(0);
-  }
 }
 
 @keyframes brighten {
