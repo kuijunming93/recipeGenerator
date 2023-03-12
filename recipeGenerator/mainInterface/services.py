@@ -1,5 +1,6 @@
-secret_key = "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"
-imgbb_secret = "41d3ac1c0222e5854c08fd6b46e64b97"
+secret_key = "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"
+imgbb_secret = "NDFkM2FjMWMwMjIyZTU4NTRjMDhmZDZiNDZlNjRiOTcK"
+#41d3ac1c0222e5854c08fd6b46e64b97
 
 import openai
 import requests
@@ -35,7 +36,7 @@ def api_dalle(initPrompt, promptName):
 
     url = "https://api.imgbb.com/1/upload"
     payload = {
-        "key": imgbb_secret,
+        "key": base64.b64decode(imgbb_secret),
         "image": output["data"][0]["b64_json"]
     }
     res = requests.post(url, payload)

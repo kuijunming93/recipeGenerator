@@ -5,6 +5,3 @@ from django.urls import reverse_lazy
 
 def base_view(request):
     return render(request, './base.html')
-
-def test_view(request):
-    return render(request, './test.html')

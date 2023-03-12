@@ -22,6 +22,5 @@ app_name = 'base'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.base_view, name='baseView'),
-    path('test/', views.test_view, name='testView'),
     path('app/', include('mainInterface.urls')),
 ]
