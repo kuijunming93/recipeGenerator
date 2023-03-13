@@ -11,17 +11,19 @@
     <title>Recipe365 - Recipe Generator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-<!--    <link rel="stylesheet" href="{% static 'css/custom-effects.css' %}">-->
     {% compress css %}
     <link type="text/x-scss" href="{% static 'css/swiper-config.scss' %}" rel="stylesheet" media="screen">
     <link type="text/x-scss" href="{% static 'css/animate.scss' %}" rel="stylesheet" media="screen">
+    <link type="text/x-scss" href="{% static 'css/custom-effects.scss' %}" rel="stylesheet" media="screen">
     {% endcompress %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <script src="{% static './libs/jquery-3.6.0.min.js' %}"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Edu+SA+Beginner&display=swap" rel="stylesheet">
-<!--    <link href="https://fonts.googleapis.com/css2?family=Edu+SA+Beginner&display=swap" rel="stylesheet">-->
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
 </head>
 <body class="bg-style">
 
@@ -47,9 +49,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="{% url 'baseView'%}">Home</a>
-                <a class="nav-link" href="{% url 'mainInterface:generateView'%}">Generate</a>
-                <a class="nav-link" href="{% url 'mainInterface:recipeView'%}">Repository</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'baseView'%}"><span class="d-lg-none">Home </span><span class="fa-solid fa-house"></span></a>
+                <a class="nav-link" href="{% url 'mainInterface:generateView'%}">Generate <i class="fa-solid fa-pen"></i></a>
+                <a class="nav-link" href="{% url 'mainInterface:recipeView'%}">Repository <i class="fa-solid fa-database"></i></a>
               </div>
             </div>
           </div>
@@ -59,86 +61,87 @@
     <div class="blur-window">
         <div class="swiper mySwiper"><!--MAIN MENU-->
             <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                  <img class= "image-zoom" src="{% static './assets/main/variety.jpg' %}"  style="width:100%"/>
-                  <div class="item-box">
-                      <h1 class="mt-2">Recipes by Generative AI</h1>
-                      <p>Powered by OpenAI's ChatGPT and DALL-E</p>
-                      <p style="color:grey">Swipe for more options >> </p>
+              <div class="swiper-slide halo-bg">
+                  <div class="blob">
+<!--                    <svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 350">-->
+<!--                    <path d="M156.4,339.5c31.8-2.5,59.4-26.8,80.2-48.5c28.3-29.5,40.5-47,56.1-85.1c14-34.3,20.7-75.6,2.3-111  c-18.1-34.8-55.7-58-90.4-72.3c-11.7-4.8-24.1-8.8-36.8-11.5l-0.9-0.9l-0.6,0.6c-27.7-5.8-56.6-6-82.4,3c-38.8,13.6-64,48.8-66.8,90.3c-3,43.9,17.8,88.3,33.7,128.8c5.3,13.5,10.4,27.1,14.9,40.9C77.5,309.9,111,343,156.4,339.5z"/>-->
+<!--                    </svg>-->
+                      <div class="glow-globe-mini"></div>
+                  </div>
+                  <div class="glow-globe"></div>
+                  <div class="item-box p-3">
+                      <h1 class="mt-2 glow-purple">Recipes by Generative AI</h1>
+                      <span class="glow-purple">Powered by OpenAI's </span>
+                      <b><span style="font-size: 115%; color: #E30B5C;" class="typer" data-typer-targets='{ "targets" : ["ChatGPT","DALL-E"]}'></span></b>
+                      <p class="swipe-gesture mt-2" style="color:grey"> << Swipe for more options >> </p>
                   </div>
               </div>
-              <div class="swiper-slide">
-                <div class="main-box">
-                    <figure style="margin: 0;">
-                      <img src="{% static './assets/main/laksa.jpg' %}"
-                        class="image-zoom">
-                    </figure>
-                    <a href = "" style="text-decoration: none;">
-                      <div class="main-box-content">
-                          <h1>Generate recipe for a random dish</h1>
-                          <h5 style="font-style: italic;">"Anything goes, for folks with no preferences"</h5>
-                          <p style="font-style: italic;">Swipe for more options >></p>
-                      </div>
-                    </a>
+              <div class="swiper-slide" style="background:black url('{% static './assets/main/burger.jpg' %}') repeat fixed center;">
+                  <div class="" >
+                      <a href="{% url 'mainInterface:generateRecipe' 1 %}" class="" style="text-decoration:none;">
+                          <div class="item-box p-3">
+                              <h1 class="mt-2 text-translateY-01">Feeling hungry?</h1>
+                              <span class="text-translateY-01 mt-2">Generate </span>
+                              <b><span style="font-size: 115%; color: orange;" class="typer" data-typer-targets='{ "targets" : ["any recipe now", "anything that is edible", "some food recipe"]}'></span></b>
+                              <p class="text-hover mt-2" style="color:grey">Click to generate <i class="fa-solid fa-pen"></i></i></p>
+                          </div>
+                      </a>
                   </div>
               </div>
-              <div class="swiper-slide">
-                <div class="main-box">
-                    <figure style="margin: 0;">
-                      <img src="{% static './assets/main/burger.jpg' %}"
-                        class="image-zoom">
-                    </figure>
-                    <a href = "" style="text-decoration: none;">
-                      <div class="main-box-content">
-                          <h1>Quick and easy</h1>
-                          <h5 style="font-style: italic;">"Recipe under 10 minutes"</h5>
-                          <p style="font-style: italic;">Swipe for more options >></p>
-                      </div>
-                    </a>
-                  </div>
-              </div>
-            <div class="swiper-slide">
-                <div class="main-box">
-                    <figure style="margin: 0;">
-                      <img src="{% static './assets/main/chickenrice.jpg' %}"
-                        class="image-zoom">
-                    </figure>
-                    <a href = "" style="text-decoration: none;">
-                      <div class="main-box-content">
-                          <h1>Simple and delicious</h1>
-                          <h5 style="font-style: italic;">"Recipe under 3 ingredients"</h5>
-                          <p style="font-style: italic;">Swipe for more options >></p>
-                      </div>
-                    </a>
-                  </div>
-              </div>
-            <div class="swiper-slide">
-                <div class="main-box">
-                    <figure style="margin: 0;">
-                      <img src="{% static './assets/main/healthfood.jpg' %}"
-                        class="image-zoom">
-                    </figure>
-                    <a href = "" style="text-decoration: none;">
-                      <div class="main-box-content">
-                          <h1>Healthy and nutritious</h1>
-                          <h5 style="font-style: italic;">"Recipe under 500 calories"</h5>
-                      </div>
-                    </a>
-                  </div>
-              </div>
+                <div class="swiper-slide" style="background:black url('{% static './assets/main/laksa.jpg' %}') repeat fixed center;">
+                    <div class="" >
+                        <a href="{% url 'mainInterface:generateRecipe' 2 %}" class="" style="text-decoration:none;">
+                            <div class="item-box p-3">
+                                <h1 class="mt-2 text-translateY-02">Quick and easy</h1>
+                                <span class="mt-2">Generate recipe </span>
+                                <b><span style="font-size: 115%; color: orange;" class="typer" data-typer-targets='{ "targets" : ["under 10 minutes", "that can be prepared in within 10 minutes", "ready to eat in 10 minutes"]}'></span></b>
+                                <p class="text-hover mt-2" style="color:grey">Click to generate <i class="fa-solid fa-pen"></i></i></p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background:black url('{% static './assets/main/chickenrice.jpg' %}') repeat fixed center;">
+                    <div class="" >
+                        <a href="{% url 'mainInterface:generateRecipe' 3 %}" class="" style="text-decoration:none;">
+                            <div class="item-box p-3">
+                                <h1 class="mt-2 text-translateY-03">Simplicious</h1>
+                                <span class="text-zoom-02 mt-2">Generate recipe </span>
+                                <b><span style="font-size: 115%; color: orange;" class="typer" data-typer-targets='{ "targets" : ["under 3 ingredients", "with less than 3 ingredients", "with as little as 3 ingredients"]}'></span></b>
+                                <p class="text-hover mt-2" style="color:grey">Click to generate <i class="fa-solid fa-pen"></i></i></p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background:black url('{% static './assets/main/healthy.jpg' %}') repeat fixed center;">
+                    <div class="" >
+                        <a href="{% url 'mainInterface:generateRecipe' 4 %}" class="" style="text-decoration:none;">
+                            <div class="item-box p-3">
+                                <h1 class="mt-2 text-translateY-04">Healthy and nutritious</h1>
+                                <span class="text-zoom-02 mt-2">Generate recipe </span>
+                                <b><span style="font-size: 115%; color: orange;" class="typer" data-typer-targets='{ "targets" : ["under 500 calories", "with not more than 0.5kcal", "with less than 2100kJ"]}'></span></b>
+                                <p class="text-hover mt-2" style="color:grey">Click to generate <i class="fa-solid fa-pen"></i></i></p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="swiper-pagination"></div>
             </div><!--END MAIN MENU-->
     </div>
 
-    <div><h1>Experimental</h1></div>
+    <div ><h1>Experimental</h1></div>
+    <footer>
+        <div id=flip>
+            <div><div>Image generation achieved by DALL-E</div></div>
+            <div><div>Recipe's text generation achieved by CHATGPT</div></div>
+            <div><div>Another Django Full-Stack Web Application Project by</div></div>
+<!--            <div><div>Kui Jun Ming</div></div>-->
+<!--            <div><div>Connect with me on</div></div>-->
+<!--            <div><div>LinkedIn! <i class="fa-brands fa-linkedin"></i></div></div>-->
+<!--            <div><div>Everything</div></div>-->
+        </div>
+    </footer>
 
-<!--    <div class="blob">-->
-<!--      &lt;!&ndash; This SVG is from https://codepen.io/Ali_Farooq_/pen/gKOJqx &ndash;&gt;-->
-<!--      <svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 350">-->
-<!--      <path d="M156.4,339.5c31.8-2.5,59.4-26.8,80.2-48.5c28.3-29.5,40.5-47,56.1-85.1c14-34.3,20.7-75.6,2.3-111  c-18.1-34.8-55.7-58-90.4-72.3c-11.7-4.8-24.1-8.8-36.8-11.5l-0.9-0.9l-0.6,0.6c-27.7-5.8-56.6-6-82.4,3c-38.8,13.6-64,48.8-66.8,90.3c-3,43.9,17.8,88.3,33.7,128.8c5.3,13.5,10.4,27.1,14.9,40.9C77.5,309.9,111,343,156.4,339.5z"/>-->
-<!--      </svg>-->
-<!--    </div>-->
 
     {% endblock %}
 
@@ -148,6 +151,7 @@
     <script src="{% static './libs/swiper-init.js' %}"></script>
     <script src="{% static './libs/loader.js' %}"></script>
     <script src="{% static './libs/loadScreen.js' %}"></script>
+    <script src="{% static './libs/jquery-typer.js' %}"></script>
 <!--    <script src="{% static './libs/scrolls-animate.js' %}"></script>-->
 </body>
 </html>

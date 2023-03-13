@@ -1,0 +1,126 @@
+/* line 1, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/animate.scss */
+.typewriter h1, .typewriter h2, .typewriter h3, .typewriter h4, .typewriter h5 {
+  overflow: hidden;
+  /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange;
+  /* The typwriter cursor */
+  margin: 0 auto;
+  /* Gives that scrolling effect as the typing happens */
+  animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite; }
+
+/* line 10, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/animate.scss */
+.typewriter span, .typewriter p {
+  overflow: hidden;
+  /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange;
+  /* The typwriter cursor */
+  margin: 0 auto;
+  /* Gives that scrolling effect as the typing happens */
+  animation: typing 2.5s steps(40, end), blink-caret 0.75s step-end infinite; }
+
+/* line 19, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/animate.scss */
+.fadeIn {
+  animation: textFadeIn 2s, slideIn 2s; }
+
+/* line 23, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/animate.scss */
+.fadeIn-fast {
+  animation: textFadeIn 1.5s; }
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0; }
+  to {
+    width: 100%; } }
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent; } }
+
+@keyframes textFadeIn {
+  from {
+    -webkit-filter: blur(15px);
+    filter: blur(15px); }
+  to {
+    -webkit-filter: blur(0px);
+    filter: blur(0px); } }
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-60%); }
+  100% {
+    transform: translateY(0); } }
+
+/* line 62, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/animate.scss */
+.text-zoom-01 {
+  animation: animateText01 2s infinite; }
+
+/* line 65, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/animate.scss */
+.text-zoom-02 {
+  animation: animateText02 1.75s infinite; }
+
+/* line 68, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/animate.scss */
+.text-zoom-03 {
+  animation: animateText03 1.5s infinite; }
+
+/* line 72, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/animate.scss */
+.text-hover {
+  transform: scale(1);
+  transition: 0.75s ease-in-out; }
+
+/* line 76, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/animate.scss */
+.text-hover:hover {
+  transform: scale(1.2);
+  filter: brightness(2); }
+
+/* line 80, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/animate.scss */
+.text-hover-anim {
+  animation: text-hover-anim 1.25s infinite alternate; }
+
+/* line 84, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/animate.scss */
+.glow-purple {
+  color: white;
+  text-shadow: blueviolet 0 0 20px;
+  animation: glow-purple-anim 1.5s infinite alternate; }
+
+@keyframes glow-purple-anim {
+  0% {
+    text-shadow: blueviolet  0 0 0px; }
+  100% {
+    text-shadow: blueviolet  0 0 20px; } }
+
+@keyframes text-hover-anim {
+  0% {
+    transform: scale(1);
+    filter: brightness(1); }
+  100% {
+    transform: scale(1.15);
+    filter: brightness(2); } }
+
+@keyframes animateText01 {
+  0% {
+    transform: translateY(0%);
+    filter: brightness(0.9); }
+  50% {
+    transform: translateY(15%);
+    filter: brightness(1.1); }
+  100% {
+    transform: translateY(0%);
+    filter: brightness(0.9); } }
+
+@keyframes animateText02 {
+  0% {
+    transform: scale(1); }
+  50% {
+    transform: scale(1.1); }
+  100% {
+    transform: scale(1); } }
+
+@keyframes animateText03 {
+  0% {
+    transform: scale(1); }
+  50% {
+    transform: scale(1.05); }
+  100% {
+    transform: scale(1); } }

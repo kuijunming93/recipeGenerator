@@ -4,12 +4,18 @@ body{
 
 }
 
+div.halo-bg{
+    background: radial-gradient(ellipse at center, #1b2735 0%,black 75%);
+    /*background: radial-gradient(ellipse at bottom, #1b2735 0%,#090a0f 100%);*/
+}
+
 h1, h2, h3, h4, h5{
     color: white;
 }
 
 img.load-blur{
   animation: unblur 2s;
+  user-select: none;
 }
 
 img.load-reveal{
@@ -61,8 +67,6 @@ a.set-default-dark{
     text-align: center;
 }
 
-.swiper{
-}
 @-webkit-keyframes bg-animation {
     0% {background-position: right;}
     100% {background-position: left;}
@@ -71,17 +75,6 @@ a.set-default-dark{
 body.bg-style {
     -webkit-animation: bg-animation 30s infinite alternate;
     background-image: url('../assets/wallpaper.jpg');
-}
-
-.item-box {
-  color: white;
-  position: absolute;
-  top: 75%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align:center;
-  background-color: black; opacity: 0.8;
-  width: 100%;
 }
 
 .main-box{
@@ -131,12 +124,34 @@ img.image-zoom{
     width: 100%;
     height: auto;
     transform: scale(1);
-    transition: 0.5s ease-in-out;
+    transition: 0.75s ease-in-out;
 }
 
 img.image-zoom:hover{
     border-radius: 6px;
-    transform: scale(1.2);
+    transform: scale(1.05);
+}
+
+div.image-zoom{
+    transform: scale(1);
+    transition: 0.75s ease-in-out;
+}
+
+div.image-zoom:hover{
+    border-radius: 6px;
+    transform: scale(1.05);
+}
+
+
+div.item-box {
+  color: white;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align:center;
+  background-color: black; opacity: 0.8;
+  width: 100%;
 }
 
 .entryFromLeft{
@@ -218,4 +233,43 @@ img.image-zoom:hover{
   100% {
     transform: translateY(150%);
   }
+}
+
+
+#flip {
+  height:50px;
+  overflow:hidden;
+}
+
+#flip > div > div {
+  color:#fff;
+  padding:4px 12px;
+  height:45px;
+  margin-bottom:45px;
+  display:inline-block;
+}
+
+#flip div:first-child {
+  animation: show 5s linear infinite;
+}
+
+#flip div div {
+  background:#42c58a;
+}
+#flip div:first-child div {
+  background:#4ec7f3;
+}
+#flip div:last-child div {
+  background:#DC143C;
+}
+
+@keyframes show {
+  0% {margin-top:-270px;}
+  5% {margin-top:-180px;}
+  33% {margin-top:-180px;}
+  38% {margin-top:-90px;}
+  66% {margin-top:-90px;}
+  71% {margin-top:0px;}
+  99.99% {margin-top:0px;}
+  100% {margin-top:-270px;}
 }

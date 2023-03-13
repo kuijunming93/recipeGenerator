@@ -31,9 +31,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link" aria-current="page" href="{% url 'baseView'%}">Home</a>
-            <a class="nav-link active" href="{% url 'mainInterface:generateView'%}">Generate</a>
-            <a class="nav-link" href="{% url 'mainInterface:recipeView'%}">Repository</a>
+              <a class="nav-link " aria-current="page" href="{% url 'baseView'%}"><span class="d-lg-none">Home </span><span class="fa-solid fa-house"></span></a>
+              <a class="nav-link active" href="{% url 'mainInterface:generateView'%}">Generate <i class="fa-solid fa-pen"></i></a>
+              <a class="nav-link" href="{% url 'mainInterface:recipeView'%}">Repository <i class="fa-solid fa-database"></i></a>
           </div>
         </div>
       </div>
@@ -182,8 +182,8 @@
             </div>
 
             <div class="d-flex justify-content-evenly mt-2 mb-2" style="text-align:center;">
-                <a href="{% url 'mainInterface:generateView'%}" type="button" class="button btn btn-warning btn-lg" style="width: 45%;">Back</a>
-                <a href="{% url 'mainInterface:generateRecipe' pageIndex %}" type="button" class="btn btn-success btn-lg insertLoader-btn" style="width: 45%;">Generate more</a>
+                <a href="{% url 'mainInterface:generateView'%}" type="button" class="button btn btn-warning btn-lg" style="width: 45%;color:white;">Back <i class="fa-solid fa-backward"></i></a>
+                <a href="{% url 'mainInterface:generateRecipe' pageIndex %}" type="button" class="btn btn-success btn-lg insertLoader-btn" style="width: 45%;">Generate more <i class="fa-solid fa-pen"></i></a>
             </div>
         </div>
         <!--END MAIN CONTENT-->

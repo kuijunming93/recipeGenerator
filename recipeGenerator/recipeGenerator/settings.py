@@ -39,6 +39,7 @@ STATICFILES_FINDERS = [
 
 INSTALLED_APPS = [
     'compressor',
+    'fontawesomefree',
     'django.contrib.admin',
     'mainInterface.apps.MaininterfaceConfig',
     'django.contrib.auth',
