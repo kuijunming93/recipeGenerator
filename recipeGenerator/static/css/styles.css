@@ -141,7 +141,6 @@ div.image-zoom:hover{
     transform: scale(1.05);
 }
 
-
 div.item-box {
   color: white;
   position: absolute;
@@ -157,20 +156,50 @@ div.item-box {
     animation-name: entryFromLeft;
     animation-duration: 1.5s;
     animation-timing-function: cubic-bezier(1, 0.055, 0.32, 1);
+    animation-fill-mode: forwards;
 }
 
 .entryFromBottom{
     animation-name: entryFromBottom;
     animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+.entryFromTop{
+    animation-name: entryFromTop;
+    animation-duration: 1.5s;
     animation-timing-function: cubic-bezier(1, 0.055, 0.32, 1);
+    animation-fill-mode: forwards;
 }
 
 .exitToBottom{
     animation-name: exitToBottom;
-    animation-duration: 1.5s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
 }
 
+.exitToLeft{
+    animation-name: exitToLeft;
+    animation-duration: 1.5s;
+    animation-timing-function: cubic-bezier(1, 0.055, 0.32, 1);
+    animation-fill-mode: forwards;
+}
+
+.exitToRight{
+    animation-name: exitToRight;
+    animation-duration: 1.5s;
+    animation-timing-function: cubic-bezier(1, 0.055, 0.32, 1);
+    animation-fill-mode: forwards;
+}
+
+@keyframes entryFromTop {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 
 @keyframes entryFromLeft {
   0% {
@@ -210,7 +239,7 @@ div.item-box {
 
 @keyframes entryFromBottom {
   0% {
-    transform: translateY(30%);
+    transform: translateY(60%);
   }
   100% {
     transform: translateY(0%);

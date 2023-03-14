@@ -29,6 +29,8 @@
 <body>
 <div class="bg-style">
     <div class="insertLoader"></div><!--Insertion of loader when calling API-->
+
+    {% block base %}
     <!-- PAGE LOADER -->
     <div class="loader" style="background-color:#FFE5B4">
       <div>
@@ -37,7 +39,43 @@
       </div>
     </div>
 
-    {% block base %}
+    <!-- IMAGE GENERATION TYPE MODAL -->
+    <div class="modal fade" id="imgGenModal" tabindex="-1" aria-labelledby="imgGenModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color:#EBECF0;">
+            <h1 class="modal-title fs-5" id="imgGenModalLabel" style="color:black;">Select Image Generation Type</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              Please select the mode of image generation you wish to see:
+              <div class="container mt-3">
+                  <div class="row">
+                      <div class="col-6 d-flex justify-content-evenly"><a class="initGeneration" data-src="1"
+                        style="text-decoration:none;text-align:center;color:black;" class="insertLoader-btn">
+                          <b>3D Rendering</b><br>
+                          <img src="{% static './assets/main/laksa-3d-sm.jpg' %}" draggable=false
+                             class="image-zoom" alt="..." style="max-width: 128px;">
+                          </a>
+                      </div>
+                      <div class="col-6 d-flex justify-content-evenly"><a class="initGeneration" data-src="2"
+                        style="text-decoration:none;text-align:center;color:black;" class="insertLoader-btn">
+                          <b>Photorealistic</b><br>
+                          <img src="{% static './assets/main/laksa-photoreal-sm.jpg' %}" draggable=false
+                             class="image-zoom" alt="..." style="max-width: 128px;">
+                          </a>
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Dismiss</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="fixed-top"> <!--NAVBAR-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="dark">
           <div class="container-fluid">
@@ -79,7 +117,7 @@
               </div>
               <div class="swiper-slide" style="background:black url('{% static './assets/main/burger.jpg' %}') repeat fixed center;">
                   <div class="" >
-                      <a href="{% url 'mainInterface:generateRecipe' 1 %}" class="insertLoader-btn" style="text-decoration:none;">
+                      <a data-src="1" data-bs-toggle="modal" data-bs-target="#imgGenModal" class="option-item" style="text-decoration:none;">
                           <div class="item-box p-3">
                               <h1 class="mt-2 text-translateY-01">Feeling hungry?</h1>
                               <span class="text-translateY-01 mt-2">Generate </span>
@@ -91,7 +129,7 @@
               </div>
                 <div class="swiper-slide" style="background:black url('{% static './assets/main/laksa.jpg' %}') repeat fixed center;">
                     <div class="" >
-                        <a href="{% url 'mainInterface:generateRecipe' 2 %}" class="insertLoader-btn" style="text-decoration:none;">
+                        <a data-src="2" data-bs-toggle="modal" data-bs-target="#imgGenModal" class="option-item" style="text-decoration:none;">
                             <div class="item-box p-3">
                                 <h1 class="mt-2 text-translateY-02">Quick and easy</h1>
                                 <span class="mt-2">Generate recipe </span>
@@ -103,7 +141,7 @@
                 </div>
                 <div class="swiper-slide" style="background:black url('{% static './assets/main/chickenrice.jpg' %}') repeat fixed center;">
                     <div class="" >
-                        <a href="{% url 'mainInterface:generateRecipe' 3 %}" class="insertLoader-btn" style="text-decoration:none;">
+                        <a data-src="3" data-bs-toggle="modal" data-bs-target="#imgGenModal" class="option-item" style="text-decoration:none;">
                             <div class="item-box p-3">
                                 <h1 class="mt-2 text-translateY-03">Simplicious</h1>
                                 <span class="text-zoom-02 mt-2">Generate recipe </span>
@@ -115,7 +153,7 @@
                 </div>
                 <div class="swiper-slide" style="background:black url('{% static './assets/main/healthy.jpg' %}') repeat fixed center;">
                     <div class="" >
-                        <a href="{% url 'mainInterface:generateRecipe' 4 %}" class="insertLoader-btn" style="text-decoration:none;">
+                        <a data-src="4" data-bs-toggle="modal" data-bs-target="#imgGenModal" class="option-item" style="text-decoration:none;">
                             <div class="item-box p-3">
                                 <h1 class="mt-2 text-translateY-04">Healthy and nutritious</h1>
                                 <span class="text-zoom-02 mt-2">Generate recipe </span>
@@ -135,7 +173,7 @@
     <footer class="footer text-center p-5 d-none d-sm-block" style="background: #DEDEDE;">
         <div class="footer-header">MADE POSSIBLE WITH</div>
         <div id=flip>
-            <div><div class="flip-last" style="background:#37b7e6;">CSS INSPIRATION FROM CODEPEN.IO</div></div>
+            <div><div class="flip-last" style="background:#37b7e6;">CSS INSPIRATION FROM CODEPEN.io</div></div>
             <div><div class="" style="background:#36cf8a;">FULL STACK WEB APPLICATION BUILT WITH DJANGO</div></div>
             <div><div style="background:orange;">AI IMAGE GENERATION BY DALL-E</div></div>
             <div><div style="background:#DC143C;">AI TEXT GENERATION BY CHATGPT</div></div>
@@ -149,7 +187,7 @@
     <footer class="footer text-center p-5 d-block d-sm-none" style="background: #DEDEDE;">
         <div class="footer-header">MADE POSSIBLE WITH</div>
         <div id=flip-sm>
-            <div><div class="flip-last" style="background:#37b7e6;">CSS INSPIRATION - CODEPEN.IO</div></div>
+            <div><div class="flip-last" style="background:#37b7e6;">CSS INSPIRATION - CODEPEN.io</div></div>
             <div><div class="" style="background:#36cf8a;">WEB DEVELOPMENT - DJANGO</div></div>
             <div><div style="background:orange;">AI IMAGE GENERATION - DALL-E</div></div>
             <div><div style="background:#DC143C;">AI TEXT GENERATION - CHATGPT</div></div>
@@ -167,6 +205,7 @@
     <script src="{% static './libs/loader.js' %}"></script>
     <script src="{% static './libs/loadScreen.js' %}"></script>
     <script src="{% static './libs/jquery-typer.js' %}"></script>
+    <script src="{% static './libs/call-services.js' %}"></script>
 <!--    <script src="{% static './libs/scrolls-animate.js' %}"></script>-->
 </div>
 </body>

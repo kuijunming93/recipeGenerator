@@ -2,6 +2,44 @@
 {% load static %}
 
 {% block base %}
+
+<!-- IMAGE GENERATION TYPE MODAL -->
+<div class="modal fade" id="imgGenModal" tabindex="-1" aria-labelledby="imgGenModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:#EBECF0;">
+        <h1 class="modal-title fs-5" id="imgGenModalLabel" style="color:black;">Select Image Generation Type</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          Please select the mode of image generation you wish to see:
+          <div class="container mt-3">
+              <div class="row">
+                  <div class="col-6 d-flex justify-content-evenly"><a class="initGeneration" data-src="1"
+                    style="text-decoration:none;text-align:center;color:black;" class="insertLoader-btn">
+                      <b>3D Rendering</b><br>
+                      <img src="{% static './assets/main/laksa-3d-sm.jpg' %}" draggable=false
+                         class="image-zoom" alt="..." style="max-width: 128px;">
+                      </a>
+                  </div>
+                  <div class="col-6 d-flex justify-content-evenly"><a class="initGeneration" data-src="2"
+                    style="text-decoration:none;text-align:center;color:black;" class="insertLoader-btn">
+                      <b>Photorealistic</b><br>
+                      <img src="{% static './assets/main/laksa-photoreal-sm.jpg' %}" draggable=false
+                         class="image-zoom" alt="..." style="max-width: 128px;">
+                      </a>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Dismiss</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="fixed-top"> <!--NAVBAR-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="dark">
       <div class="container-fluid">
@@ -24,21 +62,20 @@
 </div> <!--END NAVBAR-->
 
 <div class="blur-window">
-    <div class="container p-4 mt-5 entryFromLeft">
+    <div class="container p-4 mt-5 entryFromTop">
         <div class="container mt-2" style="text-align:center;">
             <h2>Generate recipe
             <span style="color: orange;" class="typer" data-typer-targets='{ "targets" : ["with Generative AI", "using CHATGPT and DALL-E", "with your Friendly Non-Human Assistant"]}'></span>
             </h2>
-
         </div>
         <div class="container mt-3">
             <div class="row d-flex justify-content-center">
                 {% for item in generatetype_list %}
                     <div class="col col-sm-auto mt-2">
-                        <a href="/app/recipe/{{item.pk}}" class="set-default-dark insertLoader-btn">
+                        <a data-src="{{item.pk}}" data-bs-toggle="modal" data-bs-target="#imgGenModal" class="set-default-dark option-item">
                         <div class="card" style="width: 20rem; height: auto; ">
                             <figure style="margin: 0;">
-                                <img src="{{item.imgPath}}" draggable=false class="card-img-top image-zoom" alt="..." style="user-select: none;">
+                                <img src="{% static './assets/img-load.gif' %}" data-src="{{item.imgPath}}" draggable=false class="card-img-top image-zoom image-loading" alt="..." style="user-select: none;">
                             </figure>
                             <div class="card-body">
                             <h5 class="card-title">{{item.name}}</h5>
@@ -52,5 +89,17 @@
         </div>
     </div>
 </div>
+<script>
 
+    function updateImgLoader(){
+        let images = document.querySelectorAll('img.image-loading');
+        images.forEach(image => {
+            const newUrl = image.getAttribute('data-src');
+            image.src = newUrl;
+            image.classList.remove('image-loading');
+            image.classList.add('load-blur');
+        })
+    }
+    updateImgLoader();
+</script>
 {% endblock %}

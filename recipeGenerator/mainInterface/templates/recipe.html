@@ -183,7 +183,7 @@
 
             <div class="d-flex justify-content-evenly mt-2 mb-2" style="text-align:center;">
                 <a href="{% url 'mainInterface:generateView'%}" type="button" class="button btn btn-warning btn-lg" style="width: 45%;color:white;">Back <i class="fa-solid fa-backward"></i></a>
-                <a href="{% url 'mainInterface:generateRecipe' pageIndex %}" type="button" class="btn btn-success btn-lg insertLoader-btn" style="width: 45%;">Generate more <i class="fa-solid fa-pen"></i></a>
+                <a href="{% url 'mainInterface:generateRecipe' genMode pageIndex %}" type="button" class="btn btn-success btn-lg insertLoader-btn" style="width: 45%;">Generate more <i class="fa-solid fa-pen"></i></a>
             </div>
         </div>
         <!--END MAIN CONTENT-->

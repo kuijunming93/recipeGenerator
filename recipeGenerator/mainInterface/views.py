@@ -5,7 +5,7 @@ from django.views.generic import ListView
 import json, random
 
 # Create your views here.
-def openai_api(context, cookie):
+def openai_api(context, cookie, preferredId, genMode):
     apiError = False
     try:
         prompt = context.textPrompt
@@ -20,7 +20,8 @@ def openai_api(context, cookie):
         print("prompt --> " + prompt)
         name, payload = services.api_chatgpt(prompt, 800, 0)
         if name is not None and name != "":
-            imgURL = services.api_dalle(context.imgPrompt, " " + name)
+            imgPrompt = models.ImageType.objects.filter(id=genMode).all()[0].imgPrompt
+            imgURL = services.api_dalle(imgPrompt, " " + name)
             models.Recipe.objects.create(
                 name=name,
                 imgPath=imgURL,
@@ -31,18 +32,18 @@ def openai_api(context, cookie):
             print(imgURL)
             cookie['generated'].append(name)
     except:
-        payload, imgURL, apiError = retrieve_repository()
+        payload, imgURL, apiError = retrieve_repository(preferredId, genMode)
     return payload, imgURL, apiError
 
 
-def retrieve_repository():
-    model = models.Recipe.objects.all()
-    randInt = random.randrange(0, len(model))
-    payload = model[randInt].content
-    imgURL = model[randInt].imgPath
+def retrieve_repository(preferredId = 1, genMode = 1):
+    model = models.Recipe.objects.filter(recipeType=preferredId).filter(imgType=genMode).all()
+    randObj = random.choice(model)
+    payload = randObj.content
+    imgURL = randObj.imgPath
     return payload, imgURL, True
 
-def recipe_view(request, pk):
+def recipe_view(request, pk, genMode):
     limitReached = False
     context = models.GenerateType.objects.filter(id=pk).all()[0]
     if 'invokeCount' in request.session:
@@ -55,11 +56,11 @@ def recipe_view(request, pk):
         request.session['generated'] = []
 
     if limitReached is not True:
-        payload, imgURL, apiError = openai_api(context, request.session)
-        # payload, imgURL, apiError = retrieve_repository()
+        payload, imgURL, apiError = openai_api(context, request.session, pk, genMode)
+        # payload, imgURL, apiError = retrieve_repository(pk, genMode)
         name = json.loads(payload)["name"]
     else:
-        payload, imgURL, apiError = retrieve_repository()
+        payload, imgURL, apiError = retrieve_repository(pk, genMode)
 
     return render(request, './recipe.html', context={
         "generativeInfo":context,
@@ -68,7 +69,8 @@ def recipe_view(request, pk):
         "limitReached": limitReached,
         "apiError": apiError,
         "recentlyGenerated": request.session['generated'],
-        "pageIndex": pk
+        "pageIndex": pk,
+        "genMode": genMode,
     })
 
 class GenerateTypeListView(ListView):
@@ -84,7 +86,7 @@ class RecipeListView(ListView):
     fields = '__all__'
     context_object_name = 'recipe_list'
     template_name = 'recipe_list.html'
-    paginate_by = 3
+    paginate_by = 2
 
     def get_queryset(self):
         return models.Recipe.objects.order_by('id')
