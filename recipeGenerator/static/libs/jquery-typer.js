@@ -262,7 +262,7 @@ String.prototype.rightChars = function(n){
 
 $('[data-typer-targets]').typer({
   highlightSpeed    : 2660,
-  typeSpeed         : 8500,
+  typeSpeed         : 6000,
   clearDelay        : 100,
   typeDelay         : 100,
   clearOnHighlight  : false,

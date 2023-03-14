@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class GenerateType(models.Model):
@@ -23,12 +24,17 @@ class Recipe(models.Model):
     name = models.CharField(max_length=100, blank=True)
     content = models.CharField(max_length=3000, blank=True)
     imgPath = models.URLField(max_length=1000, blank=True)
+    recipeType = models.PositiveIntegerField(null=True,blank=True)
+    timestamp = models.DateTimeField(default=timezone.now())
+
 
     def __str__(self):
         return str({
             "id": self.id,
             "name": self.name,
             "imgPath": self.imgPath,
-            "content": self.content
+            "content": self.content,
+            "recipeType": self.recipeType,
+            "timestamp": self.timestamp
         })
 

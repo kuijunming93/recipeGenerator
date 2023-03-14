@@ -55,8 +55,8 @@ def recipe_view(request, pk):
         request.session['generated'] = []
 
     if limitReached is not True:
-        # payload, imgURL, apiError = openai_api(context, request.session)
-        payload, imgURL, apiError = retrieve_repository()
+        payload, imgURL, apiError = openai_api(context, request.session)
+        # payload, imgURL, apiError = retrieve_repository()
         name = json.loads(payload)["name"]
     else:
         payload, imgURL, apiError = retrieve_repository()

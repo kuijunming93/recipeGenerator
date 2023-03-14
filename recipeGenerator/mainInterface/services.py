@@ -1,4 +1,4 @@
-secret_key = "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"
+secret_key = ""
 imgbb_secret = "NDFkM2FjMWMwMjIyZTU4NTRjMDhmZDZiNDZlNjRiOTcK"
 #41d3ac1c0222e5854c08fd6b46e64b97
 

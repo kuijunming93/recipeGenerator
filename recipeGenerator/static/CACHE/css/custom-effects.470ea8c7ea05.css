@@ -1,0 +1,273 @@
+/* line 1, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+.blob {
+  position: absolute;
+  top: 0;
+  left: 0;
+  fill: #023F92;
+  width: 15vmax;
+  z-index: -1;
+  animation: move 10s ease-in-out infinite;
+  transform-origin: 50% 50%; }
+
+@keyframes move {
+  0% {
+    transform: scale(1) translate(10px, -30px); }
+  38% {
+    transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+  40% {
+    transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+  78% {
+    transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+  80% {
+    transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+  100% {
+    transform: scale(1) translate(10px, -30px); } }
+
+/* line 26, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+div.glow-globe {
+  position: absolute;
+  top: calc(50% - 200px);
+  left: calc(50% - 200px);
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 50px #fff, inset 20px 0 80px #f0f, inset -20px 0 80px #0ff, inset 20px 0 300px #f0f, inset -20px 0 300px #0ff, 0 0 50px #fff, -10px 0 80px #f0f, 10px 0 80px #0ff; }
+
+/* line 44, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+div.glow-globe-mini {
+  position: absolute;
+  top: calc(50% - 40px);
+  left: calc(50% - 40px);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 50px #fff, inset 20px 0 80px #f0f, inset -20px 0 80px #0ff, inset 20px 0 300px #f0f, inset -20px 0 300px #0ff, 0 0 50px #fff, -10px 0 80px #f0f, 10px 0 80px #0ff; }
+
+@media (min-width: 768px) and (max-width: 992px) {
+  /* line 64, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  div.glow-globe {
+    top: calc(50% - 175px);
+    left: calc(50% - 175px);
+    width: 350px;
+    height: 350px; } }
+
+@media (min-width: 576px) and (max-width: 768px) {
+  /* line 73, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  div.glow-globe {
+    top: calc(50% - 150px);
+    left: calc(50% - 150px);
+    width: 300px;
+    height: 300px; }
+  /* line 79, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  div.glow-globe-mini {
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+    width: 60px;
+    height: 60px; } }
+
+@media (max-width: 576px) {
+  /* line 88, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  div.glow-globe {
+    top: calc(50% - 112.5px);
+    left: calc(50% - 112.5px);
+    width: 225px;
+    height: 225px; }
+  /* line 94, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  div.glow-globe-mini {
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
+    width: 40px;
+    height: 40px; } }
+
+/* line 103, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+.swipe-gesture {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #000, #fff, #000);
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: swipe-gesture-anim 3s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0); }
+
+@keyframes swipe-gesture-anim {
+  0% {
+    background-position: -200%;
+    transform: scale(1);
+    filter: brightness(1); }
+  100% {
+    background-position: 200%;
+    transform: scale(1.05);
+    filter: brightness(2); } }
+
+/* line 126, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+.text-hover-anim {
+  animation: text-hover-anim 1.25s infinite alternate; }
+
+/* line 131, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+.footer {
+  margin: 0px;
+  font-size: 32px;
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  width: 100%;
+  bottom: 50%;
+  display: block; }
+
+/* line 141, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+#flip {
+  height: 60px;
+  overflow: hidden; }
+
+/* line 147, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+#flip > div > div {
+  padding: 2px 16px;
+  height: 45px;
+  margin-bottom: 45px;
+  color: white;
+  display: inline-block; }
+
+/* line 155, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+#flip > div > div.flip-last {
+  padding: 0px 12px; }
+
+/* line 159, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+#flip div:first-child {
+  animation: show 10s linear infinite; }
+
+@keyframes show {
+  0% {
+    margin-top: -360px; }
+  4% {
+    margin-top: -270px; }
+  24% {
+    margin-top: -270px; }
+  28% {
+    margin-top: -180px; }
+  48% {
+    margin-top: -180px; }
+  52% {
+    margin-top: -90px; }
+  72% {
+    margin-top: -90px; }
+  76% {
+    margin-top: 0px; }
+  100% {
+    margin-top: 0px; } }
+
+@keyframes show-md {
+  0% {
+    margin-top: -180px; }
+  4% {
+    margin-top: -135px; }
+  24% {
+    margin-top: -135px; }
+  28% {
+    margin-top: -90px; }
+  48% {
+    margin-top: -90px; }
+  52% {
+    margin-top: -45px; }
+  72% {
+    margin-top: -45px; }
+  76% {
+    margin-top: 0px; }
+  100% {
+    margin-top: 0px; } }
+
+@keyframes show-lg {
+  0% {
+    margin-top: -270px; }
+  4% {
+    margin-top: -202.5px; }
+  24% {
+    margin-top: -202.5px; }
+  28% {
+    margin-top: -135px; }
+  48% {
+    margin-top: -135px; }
+  52% {
+    margin-top: -67.5px; }
+  72% {
+    margin-top: -67.5px; }
+  76% {
+    margin-top: 0px; }
+  100% {
+    margin-top: 0px; } }
+
+@keyframes show-sm {
+  0% {
+    margin-top: -157.5px; }
+  4% {
+    margin-top: -118.125px; }
+  24% {
+    margin-top: -118.125px; }
+  28% {
+    margin-top: -78.75px; }
+  48% {
+    margin-top: -78.75px; }
+  52% {
+    margin-top: -39.375px; }
+  72% {
+    margin-top: -39.375px; }
+  76% {
+    margin-top: 0px; }
+  100% {
+    margin-top: 0px; } }
+
+@media (min-width: 768px) and (max-width: 992px) {
+  /* line 228, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  .footer {
+    font-size: 24px; }
+  /* line 231, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  #flip {
+    height: 45px; }
+  /* line 234, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  #flip > div > div {
+    padding: 2px 14px;
+    height: 33.75px;
+    margin-bottom: 33.75px; }
+  /* line 239, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  #flip > div > div.flip-last {
+    padding: 0px 12px; }
+  /* line 242, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  #flip div:first-child {
+    animation: show-lg 10s linear infinite; } }
+
+@media (min-width: 576px) and (max-width: 768px) {
+  /* line 248, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  .footer {
+    font-size: 16px; }
+  /* line 251, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  #flip {
+    height: 30px; }
+  /* line 254, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  #flip > div > div {
+    padding: 2px 14px;
+    height: 22.5px;
+    margin-bottom: 22.5px; }
+  /* line 259, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  #flip > div > div.flip-last {
+    padding: 0px 12px; }
+  /* line 262, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  #flip div:first-child {
+    animation: show-md 10s linear infinite; } }
+
+@media (max-width: 576px) {
+  /* line 268, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  .footer {
+    font-size: 14px; }
+  /* line 271, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  #flip {
+    height: 26.25px; }
+  /* line 274, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  #flip > div > div {
+    padding: 2px 12px;
+    height: 19.6875px;
+    margin-bottom: 19.6875px; }
+  /* line 279, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  #flip > div > div.flip-last {
+    padding: 0px 10px; }
+  /* line 282, c:/users/jun ming/pycharmprojects/recipegenerator/recipegenerator/static/css/custom-effects.scss */
+  #flip div:first-child {
+    animation: show-sm 10s linear infinite; } }

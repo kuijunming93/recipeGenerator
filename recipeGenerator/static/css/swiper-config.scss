@@ -26,20 +26,33 @@ div.swiper-slide {
   height: 1200px;
   -webkit-filter: blur(5px);
   filter: blur(5px);
+  filter: brightness(0.9);
+  pointer-events: none;
+  user-select: none;
 }
 
 div.swiper-slide img {
-
   display: block;
   width: 100%;
 }
 
 div.swiper-slide-active{
+    pointer-events: auto;
+    user-select: auto;
     animation-name: brighten;
     animation-duration: 1.5s;
     animation-fill-mode: forwards;
     -webkit-filter: blur(0px);
     filter: blur(0px);
+}
+
+@keyframes brighten {
+  0% {
+    filter: brightness(0.9);
+  }
+  100% {
+    filter: brightness(1.0);
+  }
 }
 
 @keyframes fadeInSlide {
