@@ -24,9 +24,10 @@ class Recipe(models.Model):
     name = models.CharField(max_length=100, blank=True)
     content = models.CharField(max_length=3000, blank=True)
     imgPath = models.URLField(max_length=1000, blank=True)
-    recipeType = models.PositiveIntegerField(null=True, blank=True)
+    recipeType = models.PositiveIntegerField(null=True, blank=True, default=0) #based on GenerateType, current option at 1 to 4
     timestamp = models.DateTimeField(auto_now_add=True)
-    imgType = models.PositiveIntegerField(default=1)
+    imgType = models.PositiveIntegerField(default=1) #known as genMode on template, refers to ImageType
+    persists = models.BooleanField(default=False) #for db persistence, setting to false means data can be deleted by algorithm
 
 
     def __str__(self):
@@ -36,7 +37,8 @@ class Recipe(models.Model):
             "imgPath": self.imgPath,
             "content": self.content,
             "recipeType": self.recipeType,
-            "timestamp": self.timestamp
+            "timestamp": self.timestamp,
+            "imgType": self.imgType
         })
 
 class ImageType(models.Model):

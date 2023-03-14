@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from . import services
 from . import models
@@ -25,7 +26,9 @@ def openai_api(context, cookie, preferredId, genMode):
             models.Recipe.objects.create(
                 name=name,
                 imgPath=imgURL,
-                content=payload
+                content=payload,
+                recipeType=preferredId,
+                imgType=genMode
             )
             print(name)
             print(payload)
@@ -43,7 +46,11 @@ def retrieve_repository(preferredId = 1, genMode = 1):
     imgURL = randObj.imgPath
     return payload, imgURL, True
 
-def recipe_view(request, pk, genMode):
+def recipe_view(request, genMode):
+    pk = 1
+    if 'selectedOption' in request.COOKIES:
+        print("cookie is present -> " + request.COOKIES.get('selectedOption'))
+        pk = request.COOKIES.get('selectedOption')
     limitReached = False
     context = models.GenerateType.objects.filter(id=pk).all()[0]
     if 'invokeCount' in request.session:
@@ -63,7 +70,7 @@ def recipe_view(request, pk, genMode):
         payload, imgURL, apiError = retrieve_repository(pk, genMode)
 
     return render(request, './recipe.html', context={
-        "generativeInfo":context,
+        "generativeInfo": context,
         "payload": json.loads(payload),
         "imgLink": imgURL,
         "limitReached": limitReached,
@@ -86,7 +93,7 @@ class RecipeListView(ListView):
     fields = '__all__'
     context_object_name = 'recipe_list'
     template_name = 'recipe_list.html'
-    paginate_by = 2
+    paginate_by = 1
 
     def get_queryset(self):
         return models.Recipe.objects.order_by('id')

@@ -30,7 +30,7 @@ def api_dalle(initPrompt, promptName):
     output = openai.Image.create(
         prompt=prompt,
         n=1,
-        size="512x512",
+        size="256x256",
         response_format="b64_json"
     )
 

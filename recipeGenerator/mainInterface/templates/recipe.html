@@ -19,6 +19,14 @@
 </script>
 {% endif %}
 
+
+<div class="loader" style="background-color:#FFE5B4">
+  <div>
+    <img src="{% static './assets/loadscreen.gif' %}" class="img-fluid">
+    <h3 class="loader-text mt-3" style="color:black">Coming right up..</h3>
+  </div>
+</div>
+
 <div class="fixed-top"> <!--NAVBAR-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="dark">
       <div class="container-fluid">
@@ -118,7 +126,7 @@
               <div class="card-body">
                 <div class="typewriter" style="text-align:center" class="mb-2">
                     <h3 class="card-title" style="margin-bottom: 10px;">{{payload.name}}</h3>
-                    <img src="{{imgLink}}" class="card-img-top load-reveal" alt="..." style="max-width: 512px;">
+                    <img src="{% static './assets/img-load.gif' %}" data-src="{{imgLink}}" class="card-img-top load-reveal image-loading" alt="..." style="max-width: 512px;">
                 </div>
                 <h5 class="fadeIn-fast" style="color:black;">Description</h5>
                 <div class="typewriter">
@@ -183,7 +191,7 @@
 
             <div class="d-flex justify-content-evenly mt-2 mb-2" style="text-align:center;">
                 <a href="{% url 'mainInterface:generateView'%}" type="button" class="button btn btn-warning btn-lg" style="width: 45%;color:white;">Back <i class="fa-solid fa-backward"></i></a>
-                <a href="{% url 'mainInterface:generateRecipe' genMode pageIndex %}" type="button" class="btn btn-success btn-lg insertLoader-btn" style="width: 45%;">Generate more <i class="fa-solid fa-pen"></i></a>
+                <a href="{% url 'mainInterface:generateRecipe' genMode %}" type="button" class="btn btn-success btn-lg insertLoader-btn" style="width: 45%;">Generate more <i class="fa-solid fa-pen"></i></a>
             </div>
         </div>
         <!--END MAIN CONTENT-->
@@ -206,6 +214,17 @@
         }
       }
     window.onbeforeunload = displayLoader;
+
+
+    function updateImgLoader(){
+        let images = document.querySelectorAll('img.image-loading');
+        images.forEach(image => {
+            const newUrl = image.getAttribute('data-src');
+            image.src = newUrl;
+            image.classList.remove('image-loading');
+        })
+    }
+    updateImgLoader();
 </script>
 
 {% endblock %}
