@@ -73,9 +73,10 @@
                 {% for item in generatetype_list %}
                     <div class="col col-sm-auto mt-2">
                         <a data-src="{{item.pk}}" data-bs-toggle="modal" data-bs-target="#imgGenModal" class="set-default-dark option-item">
-                        <div class="card" style="width: 20rem; height: auto; ">
+                        <div class="card card-styled" style="height: auto;">
                             <figure style="margin: 0;">
-                                <img src="{% static './assets/img-load.gif' %}" data-src="{{item.imgPath}}" draggable=false class="card-img-top image-zoom image-loading" alt="..." style="user-select: none;">
+                                <img src="{% static './assets/img-load.gif' %}" data-src="{{item.imgPath}}" draggable=false
+                                     class="card-img-top image-zoom image-loading" alt="..." style="user-select: none;">
                             </figure>
                             <div class="card-body">
                             <h5 class="card-title">{{item.name}}</h5>

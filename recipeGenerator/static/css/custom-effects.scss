@@ -311,3 +311,13 @@ div.glow-globe-mini {
         font-size: 100%;
     }
 }
+
+.card-styled{
+    width: 18rem;
+}
+
+@media(max-width:350px){
+    div.card-styled{
+        width: 14.5rem;
+    }
+}

@@ -36,10 +36,10 @@
                 {% for item in recipe_list %}
                     <div class="col col-sm-auto mt-3 infinite-item entryFromBottom">
                         <a href="/app/repository/{{item.pk}}" class="set-default-dark">
-                        <div class="card" style="width: 20rem; height: auto; ">
+                        <div class="card card-styled" style="height: auto; ">
                             <figure style="margin: 0;">
                                 <img src="{% static './assets/img-load.gif' %}" data-src="{{item.imgPath}}" draggable=false
-                                     class="card-img-top image-zoom image-loading" alt="..." style="max-width: 256px;">
+                                     class="card-img-top image-zoom image-loading" alt="..." style="">
                             </figure>
                             <div class="card-body">
                             <h5 class="card-title">{{item.name}}</h5>

@@ -6,7 +6,7 @@ from django.views.generic import ListView
 import json, random
 from django.db.models import Count
 
-# Create your views here.
+# MIDDLE SERVICES
 def openai_api(context, cookie, preferredId, genMode):
     apiError = False
     try:
@@ -52,6 +52,11 @@ def retrieve_repository(preferredId = 1, genMode = 1):
     payload = randObj.content
     imgURL = randObj.imgPath
     return payload, imgURL, True
+
+#VIEWS
+def search_view(request):
+    print("hit")
+    return render(request, './search.html')
 
 def recipe_view(request, genMode):
     pk = 1
