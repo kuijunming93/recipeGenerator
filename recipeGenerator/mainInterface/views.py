@@ -4,16 +4,23 @@ from . import services
 from . import models
 from django.views.generic import ListView
 import json, random
+from django.db.models import Count
 
 # Create your views here.
 def openai_api(context, cookie, preferredId, genMode):
     apiError = False
     try:
         prompt = context.textPrompt
+        ignoreSet = db_queryRandom(3, 2)
         if len(cookie['generated']) > 0:
-            prompt += " that is not "
             for i, el in enumerate(cookie['generated']):
-                if i != len(cookie['generated']) - 1:
+                if el not in ignoreSet:
+                    ignoreSet.append(el)
+
+        if len(ignoreSet) > 0:
+            prompt += " that is not "
+            for i, el in enumerate(ignoreSet):
+                if i != len(ignoreSet) - 1:
                     prompt += el + ", "
                 else:
                     prompt += el
@@ -49,7 +56,6 @@ def retrieve_repository(preferredId = 1, genMode = 1):
 def recipe_view(request, genMode):
     pk = 1
     if 'selectedOption' in request.COOKIES:
-        print("cookie is present -> " + request.COOKIES.get('selectedOption'))
         pk = request.COOKIES.get('selectedOption')
     limitReached = False
     context = models.GenerateType.objects.filter(id=pk).all()[0]
@@ -96,7 +102,7 @@ class RecipeListView(ListView):
     paginate_by = 1
 
     def get_queryset(self):
-        return models.Recipe.objects.order_by('id')
+        return models.Recipe.objects.order_by('-timestamp')
 
 def recipe_detail(request, pk):
     query = models.Recipe.objects.filter(id=pk).all()
@@ -106,3 +112,21 @@ def recipe_detail(request, pk):
         print(content)
     return render(request, './recipe_detail.html', context={"context":context,"payload":json.loads(content)})
 
+
+# DB QUERY SERVICES
+def db_queryRandom(ignoreCount, threshold):
+    queryList = list(models.Recipe.objects.values('name').annotate(Count('id')).order_by().filter(id__count__gt=threshold))
+    if ignoreCount > len(queryList) and len(queryList) > 0:
+        ignoreCount = len(queryList) - 1
+    elif len(queryList) <= 0:
+        ignoreCount = 0
+
+    output = []
+    for i in range(ignoreCount):
+        rand = random.choice(queryList)
+        queryList.remove(rand)
+        output.append(rand['name'])
+
+    return output
+
+db_queryRandom(3,3)

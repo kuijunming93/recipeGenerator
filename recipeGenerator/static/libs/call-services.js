@@ -1,6 +1,9 @@
 //PRESETTING BY USER ACTION
 $('a.initGeneration').click(function () {
-    $('#imgGenModal.modal').attr('style','z-index=1');
+    $('#imgGenModal.modal').modal('hide');
+    setTimeout(function(){
+        $('.modal-backdrop').remove();
+    },200);
 })
 
 $('.option-item').click(function () {
