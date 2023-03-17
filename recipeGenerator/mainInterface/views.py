@@ -55,8 +55,15 @@ def retrieve_repository(preferredId = 1, genMode = 1):
 
 #VIEWS
 def search_view(request):
-    print("hit")
-    return render(request, './search.html')
+    userInput = request.GET.get('search-input')
+    query = []
+    if len(userInput) > 0:
+        query = models.Recipe.objects.filter(name__icontains=userInput).all()
+    return render(request, './search.html', context={
+        "data": query,
+        "dataCount": len(query),
+        "keywords": userInput
+    })
 
 def recipe_view(request, genMode):
     pk = 1
