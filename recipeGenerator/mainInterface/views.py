@@ -30,6 +30,7 @@ def openai_api(context, cookie, preferredId, genMode):
         if name is not None and name != "":
             imgPrompt = models.ImageType.objects.filter(id=genMode).all()[0].imgPrompt
             imgURL = services.api_dalle(imgPrompt, " " + name)
+            db_cleanDuplicates(name, 8)
             models.Recipe.objects.create(
                 name=name,
                 imgPath=imgURL,
@@ -52,6 +53,7 @@ def retrieve_repository(preferredId = 1, genMode = 1):
     payload = randObj.content
     imgURL = randObj.imgPath
     return payload, imgURL, True
+
 
 #VIEWS
 def search_view(request):
@@ -141,4 +143,8 @@ def db_queryRandom(ignoreCount, threshold):
 
     return output
 
-db_queryRandom(3,3)
+def db_cleanDuplicates(recipeName, threshold):
+    query = models.Recipe.objects.filter(name=recipeName).exclude(persists=True).all()
+    if len(query) > threshold:
+        removingId = random.choice(query).id
+        queryRemoval = models.Recipe.objects.filter(id=removingId).delete()
