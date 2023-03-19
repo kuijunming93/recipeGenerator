@@ -2,3 +2,5 @@ pip install django_compressor
 pip install django-libsass
 pip install fontawesomefree
 pip install openai
+
+python manage.py collectstatic

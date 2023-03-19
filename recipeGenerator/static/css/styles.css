@@ -150,6 +150,7 @@ div.item-box {
   text-align:center;
   background-color: black; opacity: 0.8;
   width: 100%;
+  cursor: pointer;
 }
 
 .entryFromLeft{
