@@ -30,7 +30,7 @@ def openai_api(context, cookie, preferredId, genMode):
         if name is not None and name != "":
             imgPrompt = models.ImageType.objects.filter(id=genMode).all()[0].imgPrompt
             imgURL = services.api_dalle(imgPrompt, " " + name)
-            db_cleanDuplicates(name, 8)
+            db_cleanDuplicates(name, 10)
             models.Recipe.objects.create(
                 name=name,
                 imgPath=imgURL,

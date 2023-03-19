@@ -1,6 +1,6 @@
-secret_key = ""
-imgbb_secret = "NDFkM2FjMWMwMjIyZTU4NTRjMDhmZDZiNDZlNjRiOTcK"
-#41d3ac1c0222e5854c08fd6b46e64b97
+import os
+secret_key = os.getenv("OPENAI_API_KEY")
+imgbb_secret = os.getenv("IMGBB_API_KEY")
 
 import openai
 import requests
