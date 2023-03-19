@@ -1,0 +1,3 @@
+pip install django_compressor
+pip install django-libsass
+pip install fontawesomefree
