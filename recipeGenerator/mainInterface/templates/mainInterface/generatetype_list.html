@@ -15,14 +15,14 @@
           Please select the mode of image generation you wish to see:
           <div class="container mt-3">
               <div class="row">
-                  <div class="col-6 d-flex justify-content-evenly"><a href="{% url 'mainInterface:generateRecipe' 1 %}" class="insertLoader-btn initGeneration"
+                  <div class="col-6 d-flex justify-content-evenly"><a href="{% url 'mainInterface:generateRecipe' 1 %}" class="initGeneration"
                     style="text-decoration:none;text-align:center;color:black;">
                       <b>3D Rendering</b><br>
                       <img src="{% static './assets/main/laksa-3d-sm.jpg' %}" draggable=false
                          class="image-zoom" alt="..." style="max-width: 128px;">
                       </a>
                   </div>
-                  <div class="col-6 d-flex justify-content-evenly"><a href="{% url 'mainInterface:generateRecipe' 2 %}" class="insertLoader-btn initGeneration"
+                  <div class="col-6 d-flex justify-content-evenly"><a href="{% url 'mainInterface:generateRecipe' 2 %}" class="initGeneration"
                     style="text-decoration:none;text-align:center;color:black;">
                       <b>Photorealistic</b><br>
                       <img src="{% static './assets/main/laksa-photoreal-sm.jpg' %}" draggable=false

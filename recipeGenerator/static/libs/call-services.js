@@ -1,9 +1,17 @@
 //PRESETTING BY USER ACTION
 $('a.initGeneration').click(function () {
     $('#imgGenModal.modal').modal('hide');
-    setTimeout(function(){
-        $('.modal-backdrop').remove();
-    },200);
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+
+    document.querySelector(".insertLoader").innerHTML = `
+    <div class="loader" style="background-color:#FFE5B4;">
+      <div>
+        <img src="/static/assets/loadscreen.gif" class="img-fluid">
+        <h3 class="loader-text mt-3" style="color:black">Generating your recipe, please wait..
+        <div class="spinner-grow text-warning" role="status"></div></h3>
+      </div>
+    </div>`;
 })
 
 $('.option-item').click(function () {

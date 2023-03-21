@@ -8,14 +8,10 @@ function showLoader(){
             <div class="spinner-grow text-warning" role="status"></div></h3>
           </div>
         </div>`;
-
   }
 
-let loader = document.getElementsByClassName('insertLoader-btn');
-if (loader !== null){
-    for (i=0; i < loader.length; i++){
-        loader[i].addEventListener('click', function(){
-            showLoader();
-        })
-    }
-}
+$(window).ready(function(){
+    $('.insertLoader-btn').click(function({
+        showLoader();
+    }))
+})

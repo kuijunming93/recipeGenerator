@@ -2,6 +2,7 @@ import os
 secret_key = os.getenv("OPENAI_API_KEY")
 imgUpload_secret = os.getenv("GH_API_KEY")
 
+
 import openai
 import requests
 import json
