@@ -4,7 +4,7 @@ $(document).ready(function(){
         $('#imgGenModal.modal').modal('hide');
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
-        document.querySelector(".insertLoader").classList.remove('d-none');
+        document.querySelector("div.insertLoader").classList.remove('d-none');
     })
 
     $('.option-item').click(function () {

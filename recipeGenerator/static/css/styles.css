@@ -47,7 +47,7 @@ div.blur-window{
     backdrop-filter: blur(3px);
 }
 
-.loader{
+.loader, .loader-special {
     position: fixed;
     top:0; left: 0;
     z-index: 3;
