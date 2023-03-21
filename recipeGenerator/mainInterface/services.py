@@ -27,6 +27,7 @@ def api_chatgpt(prompt, token, temp):
 
 def api_dalle(initPrompt, promptName):
     prompt = initPrompt + promptName
+    print("dall-e prompt --> " + prompt)
     output = openai.Image.create(
         prompt=prompt,
         n=1,
@@ -34,6 +35,7 @@ def api_dalle(initPrompt, promptName):
         response_format="b64_json"
     )
 
+    print("dall-e success")
     UUID = str(uuid.uuid4().hex)
     url = "https://api.github.com/repos/kuijunming93/imgUpload/contents/img-" + UUID +".jpg"
     headers = {
@@ -45,6 +47,8 @@ def api_dalle(initPrompt, promptName):
         "content": output["data"][0]["b64_json"]
     }
     res = requests.put(url, headers=headers, json=data)
+
+    print("gh res -> " + res.tex)
     imgURL = json.loads(res.text)['content']['download_url']
     print(imgURL)
 
