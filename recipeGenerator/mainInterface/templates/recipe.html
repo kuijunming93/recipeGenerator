@@ -30,7 +30,7 @@
 <div class="fixed-top"> <!--NAVBAR-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'baseView'%}">
+        <a class="navbar-brand back-btn" href="{% url 'baseView'%}">
             <img src="{% static './assets/logo.png' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
             Recipe365
         </a>
@@ -39,9 +39,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" aria-current="page" href="{% url 'baseView'%}"><span class="d-lg-none">Home </span><span class="fa-solid fa-house"></span></a>
-                <a class="nav-link active" href="{% url 'mainInterface:generateView'%}">Generate <i class="fa-solid fa-pen"></i></a>
-                <a class="nav-link" href="{% url 'mainInterface:recipeView'%}">Repository <i class="fa-solid fa-database"></i></a>
+                <a class="nav-link back-btn" aria-current="page" href="{% url 'baseView'%}"><span class="d-lg-none">Home </span><span class="fa-solid fa-house"></span></a>
+                <a class="nav-link back-btn active" href="{% url 'mainInterface:generateView'%}">Generate <i class="fa-solid fa-pen"></i></a>
+                <a class="nav-link back-btn" href="{% url 'mainInterface:recipeView'%}">Repository <i class="fa-solid fa-database"></i></a>
             </div>
             <div class="navbar-nav col-xxl-2 col-lg-3 col-6 ms-auto">
                 <form class="input-group rounded" action="{% url 'mainInterface:searchView' %}" method="GET">
@@ -123,8 +123,8 @@
         <div class="container mt-2 mb-3">
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'baseView'%}" style="color:white; text-decoration: none;">Home</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'mainInterface:generateView'%}" style="color:white; text-decoration: none;">Generate</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'baseView'%}" class="back-btn" style="color:white; text-decoration: none;">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'mainInterface:generateView'%}" class="back-btn" style="color:white; text-decoration: none;">Generate</a></li>
                 <li class="breadcrumb-item active" aria-current="page" style="color:white; text-decoration: none;"><strong>{{generativeInfo.description}}</strong></li>
               </ol>
             </nav>
