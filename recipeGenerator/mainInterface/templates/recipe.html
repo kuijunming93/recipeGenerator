@@ -200,10 +200,10 @@
             </div>
 
             <div class="d-flex justify-content-evenly mt-2 mb-2" style="text-align:center;">
-                <a href="{% url 'mainInterface:generateView'%}" type="button" class="button btn btn-warning btn-lg d-none d-sm-block" style="width: 45%;color:white;">Back <i class="fa-solid fa-backward"></i></a>
+                <a href="{% url 'mainInterface:generateView'%}" type="button" class="button btn btn-warning btn-lg d-none d-sm-block back-btn" style="width: 45%;color:white;">Back <i class="fa-solid fa-backward"></i></a>
                 <a href="{% url 'mainInterface:generateRecipe' genMode %}" type="button" class="btn btn-success btn-lg insertLoader-btn d-none d-sm-block" style="width: 45%;">Generate more <i class="fa-solid fa-pen"></i></a>
 
-                <a href="{% url 'mainInterface:generateView'%}" type="button" class="button btn btn-warning btn-lg d-block d-sm-none" style="width: 48%;color:white;">Back <i class="fa-solid fa-backward"></i></a>
+                <a href="{% url 'mainInterface:generateView'%}" type="button" class="button btn btn-warning btn-lg d-block d-sm-none back-btn" style="width: 48%;color:white;">Back <i class="fa-solid fa-backward"></i></a>
                 <a href="{% url 'mainInterface:generateRecipe' genMode %}" type="button" class="btn btn-success insertLoader-btn btn-lg d-block d-sm-none" style="width: 48%;">Generate <i class="fa-solid fa-pen"></i></a>
             </div>
         </div>
@@ -213,6 +213,12 @@
 
 
 <script>
+    $(document).ready(function(){
+        $('.back-btn').click(function(){
+            document.querySelector(".insertLoader").innerHTML = "  ";
+        })
+    })
+
     function displayLoader(){
         let el = document.querySelector(".insertLoader");
 
@@ -227,7 +233,6 @@
         }
       }
     window.onbeforeunload = displayLoader;
-
 
     function updateImgLoader(){
         let images = document.querySelectorAll('img.image-loading');

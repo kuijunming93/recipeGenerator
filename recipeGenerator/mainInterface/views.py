@@ -130,8 +130,9 @@ def recipe_detail(request, pk):
 # DB QUERY SERVICES
 def db_queryRandom(ignoreCount, threshold):
     queryList = list(models.Recipe.objects.values('name').annotate(Count('id')).order_by().filter(id__count__gt=threshold))
+    print("queryList--> " + str(queryList))
     if ignoreCount > len(queryList) and len(queryList) > 0:
-        ignoreCount = len(queryList) - 1
+        ignoreCount = len(queryList)
     elif len(queryList) <= 0:
         ignoreCount = 0
 

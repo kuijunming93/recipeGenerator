@@ -12,3 +12,5 @@ $('.option-item').click(function () {
     document.cookie = "selectedOption=" + this.getAttribute('data-src') + "; path=/";
     console.log(document.cookie)
 })
+
+

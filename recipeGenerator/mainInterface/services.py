@@ -1,6 +1,8 @@
 import os
-secret_key = os.getenv("OPENAI_API_KEY")
-imgUpload_secret = os.getenv("GH_API_KEY")
+# secret_key = os.getenv("OPENAI_API_KEY")
+# imgUpload_secret = os.getenv("GH_API_KEY")
+secret_key = "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"
+imgUpload_secret = "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"
 
 import openai
 import requests
@@ -43,12 +45,12 @@ def api_dalle(initPrompt, promptName):
         "Content-type": "application/vnd.github+json"
     }
     data = {
-        "message": "Upload " + UUID,  # Put your commit message here.
+        "message": "Upload " + UUID,
         "content": output["data"][0]["b64_json"]
     }
     res = requests.put(url, headers=headers, json=data)
 
-    print("gh res -> " + res.tex)
+    print("gh res -> " + res.text)
     imgURL = json.loads(res.text)['content']['download_url']
     print(imgURL)
 
