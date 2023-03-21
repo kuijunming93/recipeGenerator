@@ -10,7 +10,7 @@ function showLoader(){
         </div>`;
   }
 
-$(window).ready(function(){
+$(document).ready(function(){
     $('.insertLoader-btn').click(function({
         showLoader();
     }))
