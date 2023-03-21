@@ -1,5 +1,9 @@
 //PRESETTING BY USER ACTION
 $(document).ready(function(){
+    const forceLoadURL = document.querySelector("img.img-loader").getAttribute('src');
+    document.querySelector("img.img-loader").setAttribute('src', forceLoadURL);
+    console.log(forceLoadURL);
+
     $('a.initGeneration').click(function () {
         $('#imgGenModal.modal').modal('hide');
         $('body').removeClass('modal-open');
