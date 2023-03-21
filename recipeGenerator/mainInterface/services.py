@@ -1,6 +1,8 @@
 import os
-secret_key = os.getenv("OPENAI_API_KEY")
-imgbb_secret = os.getenv("IMGBB_API_KEY")
+# secret_key = os.getenv("OPENAI_API_KEY")
+secret_key = "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"
+imgUpload_secret = "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"
+# imgUpload_secret = os.getenv("GH_API_KEY")
 
 import openai
 import requests
@@ -34,13 +36,21 @@ def api_dalle(initPrompt, promptName):
         response_format="b64_json"
     )
 
-    url = "https://api.imgbb.com/1/upload"
-    payload = {
-        "key": base64.b64decode(imgbb_secret),
-        "image": output["data"][0]["b64_json"]
+    UUID = str(uuid.uuid4().hex)
+    url = "https://api.github.com/repos/kuijunming93/imgUpload/contents/img-" + UUID +".jpg"
+    headers = {
+        "Authorization": f'''Bearer {imgUpload_secret}''',
+        "Content-type": "application/vnd.github+json"
     }
-    res = requests.post(url, payload)
-    return json.loads(res.text)["data"]["image"]["url"]
+    data = {
+        "message": "Upload " + UUID,  # Put your commit message here.
+        "content": output["data"][0]["b64_json"]
+    }
+    res = requests.put(url, headers=headers, json=data)
+    imgURL = json.loads(res.text)['content']['download_url']
+    print(imgURL)
+
+    return imgURL
 
 def save_as_img(api_response):
     DATA_DIR = pathlib.Path.cwd() / "temp" / "json"
