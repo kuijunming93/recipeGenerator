@@ -60,6 +60,17 @@ div.blur-window{
     width:100%;
 }
 
+@media(max-width:576px){
+    .img-loader{
+        display: none;
+    }
+}
+@supports (-webkit-touch-callout: none) {
+    .img-loader{
+        display: none;
+    }
+}
+
 a.set-default-dark{
     text-decoration: none;
     color: black;

@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6w@q%z_+)8%rw%%oqzr2u4wfderg)y707b8wt4#p(_deusd8q_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -134,8 +134,8 @@ USE_TZ = True
 # Static files (css, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_ROOT = '/home/recipe365/recipeGenerator/recipeGenerator/static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = '/home/recipe365/recipeGenerator/recipeGenerator/static'
 STATIC_URL = 'static/'
 
 # STATICFILES_DIRS = [
